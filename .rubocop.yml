@@ -5,6 +5,7 @@ inherit_mode:
 
 AllCops:
   StyleGuideBaseURL: https://shopify.github.io/ruby-style-guide/
+  NewCops: enable
 
 Bundler/OrderedGems:
   Enabled: false
