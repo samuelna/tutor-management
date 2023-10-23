@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_23_014625) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_23_014849) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "lessons", force: :cascade do |t|
+    t.datetime "start_time", null: false
+    t.datetime "end_time", null: false
+    t.bigint "student_id_id"
+    t.bigint "teacher_id_id"
+    t.float "rate", null: false
+    t.boolean "paid", default: false
+    t.bigint "recurrence_id_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recurrence_id_id"], name: "index_lessons_on_recurrence_id_id"
+    t.index ["student_id_id"], name: "index_lessons_on_student_id_id"
+    t.index ["teacher_id_id"], name: "index_lessons_on_teacher_id_id"
+  end
 
   create_table "recurrences", force: :cascade do |t|
     t.bigint "frequency", null: false
@@ -34,4 +49,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_23_014625) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "lessons", "recurrences", column: "recurrence_id_id"
+  add_foreign_key "lessons", "users", column: "student_id_id"
+  add_foreign_key "lessons", "users", column: "teacher_id_id"
 end
