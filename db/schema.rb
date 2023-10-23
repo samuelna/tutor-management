@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -15,38 +17,38 @@ ActiveRecord::Schema[7.1].define(version: 2023_10_23_014849) do
   enable_extension "plpgsql"
 
   create_table "lessons", force: :cascade do |t|
-    t.datetime "start_time", null: false
-    t.datetime "end_time", null: false
-    t.bigint "student_id_id"
-    t.bigint "teacher_id_id"
-    t.float "rate", null: false
-    t.boolean "paid", default: false
-    t.bigint "recurrence_id_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["recurrence_id_id"], name: "index_lessons_on_recurrence_id_id"
-    t.index ["student_id_id"], name: "index_lessons_on_student_id_id"
-    t.index ["teacher_id_id"], name: "index_lessons_on_teacher_id_id"
+    t.datetime("start_time", null: false)
+    t.datetime("end_time", null: false)
+    t.bigint("student_id_id")
+    t.bigint("teacher_id_id")
+    t.float("rate", null: false)
+    t.boolean("paid", default: false)
+    t.bigint("recurrence_id_id")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["recurrence_id_id"], name: "index_lessons_on_recurrence_id_id")
+    t.index(["student_id_id"], name: "index_lessons_on_student_id_id")
+    t.index(["teacher_id_id"], name: "index_lessons_on_teacher_id_id")
   end
 
   create_table "recurrences", force: :cascade do |t|
-    t.bigint "frequency", null: false
-    t.bigint "count"
-    t.string "day_of_week"
-    t.datetime "until_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint("frequency", null: false)
+    t.bigint("count")
+    t.string("day_of_week")
+    t.datetime("until_date")
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email", null: false
-    t.bigint "role", default: 0, null: false
-    t.bigint "grade"
-    t.decimal "rate", precision: 10, scale: 2
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.string("name")
+    t.string("email", null: false)
+    t.bigint("role", default: 0, null: false)
+    t.bigint("grade")
+    t.decimal("rate", precision: 10, scale: 2)
+    t.datetime("created_at", null: false)
+    t.datetime("updated_at", null: false)
+    t.index(["email"], name: "index_users_on_email", unique: true)
   end
 
   add_foreign_key "lessons", "recurrences", column: "recurrence_id_id"
