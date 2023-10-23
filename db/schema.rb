@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_10_20_023306) do
+ActiveRecord::Schema[7.1].define(version: 2023_10_23_014625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "recurrences", force: :cascade do |t|
+    t.bigint "frequency", null: false
+    t.bigint "count"
+    t.string "day_of_week"
+    t.datetime "until_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
